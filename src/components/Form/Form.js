@@ -1,15 +1,33 @@
 import { useState } from "react"
 import Input from "../Input/Input"
 import Button from "../Button/Button"
+import axios from 'axios'
+import Message from "./Message/Message"
 
-export default function Form({onSubmit}) {
+export default function Form() {
     
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const [hasStatus, setHasStatus] = useState('')
+  
+  async function onSubmit() {
+    const postData = {
+      name, 
+      password,
+    }
+
+    try {
+      await axios.post('https://my-json-server.typicode.com/typicode/demo/posts', postData)
+      setHasStatus('Login efetuado')
+      setTimeout(() => setHasStatus(''), 3000)
+    } catch (error) {
+      setHasStatus(error.response.data.msg)
+      setTimeout(() => setHasStatus(''), 3000)
+    }
+  }
 
   return (
-    <form 
-      onSubmit={ e => onSubmit(e, name, password)} 
+    <div 
       data-testid="form"
     >
       <Input 
@@ -25,9 +43,15 @@ export default function Form({onSubmit}) {
         type="password"
         data-testid="input-password"
       />
-      <Button 
-        type="submit"
+      <Button
+        onClick={onSubmit}
       />
-    </form>
+      {hasStatus !== '' && 
+        <Message 
+          data-testid="msg" 
+          msg={hasStatus}
+        />
+      }
+    </div>
   )
 }

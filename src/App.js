@@ -6,7 +6,6 @@ function App() {
 
   const submitHandler = (e, name, password) => {
     e.preventDefault()
-    console.log({name, password})
   }
 
   return (
