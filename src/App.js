@@ -1,11 +1,17 @@
+
 import './App.css';
-import Button from './components/Button/Button'
+import Form from './components/Form/Form'
 
 function App() {
+
+  const submitHandler = (e, name, password) => {
+    e.preventDefault()
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <Button />
+      <Form onSubmit={submitHandler}/>
       </header>
     </div>
   );

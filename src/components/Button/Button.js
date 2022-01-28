@@ -1,14 +1,12 @@
 
-export default function Button() {
-  const doSomething = () => {
-    alert('FUI CLICADO')
-  }
+export default function Button({onClick, type}) {
 
   return (
-    <div>
-      <button onClick={doSomething}>
-        SOU UM BOTÃO!
-      </button>
-    </div>
+    <button 
+      onClick={onClick}
+      type={type}
+    >
+      Login
+    </button>
   )
 }
