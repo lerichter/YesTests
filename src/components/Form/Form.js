@@ -46,7 +46,7 @@ export default function Form() {
       <Button
         onClick={onSubmit}
       />
-      {hasStatus !== '' && 
+      {hasStatus !== '' &&
         <Message 
           data-testid="msg" 
           msg={hasStatus}
